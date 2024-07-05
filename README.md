@@ -1,56 +1,22 @@
-# Component Library Documentation
+# My Frontend Library
 
-This document outlines the usage and customization options for our React component library.
+A comprehensive React component library with Tailwind CSS styling.
 
-## Table of Contents
+## Installation
 
-1. [Navbar](#navbar)
-2. [Button](#button)
-3. [Card](#card)
-4. [CardList](#cardlist)
-5. [Hero](#hero)
-6. [Footer](#footer)
-
-## Navbar
-
-The Navbar component provides a responsive navigation bar for your application.
-
-### Props
-
-| Prop     | Type                                   | Description                      |
-| -------- | -------------------------------------- | -------------------------------- |
-| navItems | Array<{ label: string, href: string }> | Array of navigation items        |
-| onLogin  | () => void                             | Function to handle login action  |
-| onSignup | () => void                             | Function to handle signup action |
-
-### Usage
+To install this library, run one of the following commands:
 
 ```tsx
-<Navbar
-  navItems={[
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-  ]}
-  onLogin={() => console.log("Login clicked")}
-  onSignup={() => console.log("Signup clicked")}
-/>
+npm install https://github.com/alueddeke/my-frontend-lib.git
+# or
+yarn add https://github.com/alueddeke/my-frontend-lib.git
 ```
 
-## Button
+## Components
 
-The Button component is a customizable button that can be used throughout your application.
+### Button
 
-### Props
-
-| Prop      | Type                                    | Default   | Description                    |
-| --------- | --------------------------------------- | --------- | ------------------------------ |
-| variant   | 'primary' \| 'secondary' \| 'outline'   | 'primary' | Button style variant           |
-| size      | 'sm' \| 'md' \| 'lg' \| string          | 'md'      | Button size                    |
-| className | string                                  | ''        | Additional CSS classes         |
-| children  | ReactNode                               | -         | Button content                 |
-| ...props  | ButtonHTMLAttributes<HTMLButtonElement> | -         | All standard button attributes |
-
-### Usage
+A customizable button component.
 
 ```tsx
 <Button variant="secondary" size="lg" onClick={() => console.log("Clicked")}>
@@ -58,21 +24,9 @@ The Button component is a customizable button that can be used throughout your a
 </Button>
 ```
 
-## Card
+### Card
 
-The Card component displays content in a structured format, optionally including an image.
-
-### Props
-
-| Prop        | Type                           | Default | Description           |
-| ----------- | ------------------------------ | ------- | --------------------- |
-| title       | string                         | -       | Card title            |
-| description | string                         | -       | Card description      |
-| imageSrc    | string                         | -       | URL of the card image |
-| size        | 'sm' \| 'md' \| 'lg' \| string | 'md'    | Card size             |
-| imageSize   | string                         | 'h-48'  | Height of the image   |
-
-### Usage
+Displays content in a structured format, optionally including an image.
 
 ```tsx
 <Card
@@ -84,17 +38,9 @@ The Card component displays content in a structured format, optionally including
 />
 ```
 
-## CardList
+### CardList
 
-The CardList component provides a grid layout for multiple Card components.
-
-### Props
-
-| Prop     | Type      | Description                     |
-| -------- | --------- | ------------------------------- |
-| children | ReactNode | Card components to be displayed |
-
-### Usage
+Provides a grid layout for multiple Card components.
 
 ```tsx
 <CardList>
@@ -104,47 +50,31 @@ The CardList component provides a grid layout for multiple Card components.
 </CardList>
 ```
 
-## Hero
+### ChatWindow
 
-The Hero component creates a prominent banner area, often used at the top of a page.
-
-### Props
-
-| Prop     | Type                                     | Default | Description                                |
-| -------- | ---------------------------------------- | ------- | ------------------------------------------ |
-| title    | string                                   | -       | Hero title                                 |
-| subtitle | string                                   | -       | Hero subtitle                              |
-| imageSrc | string                                   | -       | Background image URL                       |
-| height   | 'sm' \| 'md' \| 'lg' \| 'full' \| string | 'md'    | Hero height                                |
-| overlay  | boolean                                  | true    | Whether to add a dark overlay on the image |
-| children | ReactNode                                | -       | Additional content (e.g., buttons)         |
-
-### Usage
+A container for chat messages and input.
 
 ```tsx
-<Hero
-  title="Welcome to Our Site"
-  subtitle="Discover amazing things"
-  imageSrc="https://example.com/hero-image.jpg"
-  height="lg"
->
-  <Button size="lg">Get Started</Button>
-</Hero>
+<ChatWindow>{/* Chat messages and input go here */}</ChatWindow>
 ```
 
-## Footer
+### ConversationList
 
-The Footer component provides a customizable footer for your application.
+Displays a list of conversations or chat threads.
 
-### Props
+```tsx
+<ConversationList
+  conversations={[
+    { id: "1", name: "John Doe", lastMessage: "Hello!" },
+    { id: "2", name: "Jane Smith", lastMessage: "How are you?" },
+  ]}
+  onSelectConversation={(id) => console.log(`Selected conversation: ${id}`)}
+/>
+```
 
-| Prop            | Type                                               | Default   | Description             |
-| --------------- | -------------------------------------------------- | --------- | ----------------------- |
-| links           | Array<{ label: string, href: string }>             | -         | Footer navigation links |
-| height          | 'sm' \| 'md' \| 'lg' \| string                     | 'md'      | Footer height           |
-| backgroundColor | 'primary' \| 'secondary' \| 'background' \| string | 'primary' | Footer background color |
+### Footer
 
-### Usage
+A customizable footer component.
 
 ```tsx
 <Footer
@@ -157,6 +87,68 @@ The Footer component provides a customizable footer for your application.
 />
 ```
 
+### Hero
+
+Creates a prominent banner area, often used at the top of a page.
+
+```tsx
+<Hero
+  title="Welcome to Our Site"
+  subtitle="Discover amazing things"
+  imageSrc="https://example.com/hero-image.jpg"
+  height="lg"
+>
+  <Button size="lg">Get Started</Button>
+</Hero>
+```
+
+### InputBar
+
+An input component for chat or search functionality.
+
+```tsx
+<InputBar onSendMessage={(message) => console.log(`Sending: ${message}`)} />
+```
+
+### MessageBubble
+
+Displays individual chat messages.
+
+```tsx
+<MessageBubble message="Hello, how are you?" isUser={false} />
+```
+
+### Navbar
+
+A responsive navigation bar for your application.
+
+```tsx
+<Navbar
+  navItems={[
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+  ]}
+  onLogin={() => console.log("Login clicked")}
+  onSignup={() => console.log("Signup clicked")}
+/>
+```
+
+### NavLink
+
+A styled navigation link, typically used within the Navbar.
+
+```tsx
+<NavLink href="/about">About Us</NavLink>
+```
+
+### UserAvatar
+
+Displays a user's avatar image.
+
+```tsx
+<UserAvatar src="https://example.com/avatar.jpg" alt="User Name" />
+```
+
 ## Customization
 
 All components use Tailwind CSS classes for styling. You can further customize the appearance by:
@@ -165,8 +157,22 @@ All components use Tailwind CSS classes for styling. You can further customize t
 2. Passing custom classes via the `className` prop (where available).
 3. Extending the components and adding your own styles.
 
-Remember to refer to the Tailwind CSS documentation for available utility classes and customization options.
+## Usage with Tailwind CSS
 
+To use this library with Tailwind CSS in your project:
+
+1. Install Tailwind CSS in your project if you haven't already.
+2. Extend your `tailwind.config.js`:
+
+```ts
+module.exports = {
+  presets: [require("my-frontend-lib/tailwind.config.js")],
+  // Your project-specific configurations...
+};
 ```
 
+3. Import the library's CSS file in your main CSS file:
+
+```tsx
+@import 'my-frontend-lib/dist/styles.css';
 ```

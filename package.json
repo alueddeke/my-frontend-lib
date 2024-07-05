@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/my-frontend-lib.git"
+  },
   "files": [
     "dist"
   ],
