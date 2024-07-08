@@ -2,11 +2,32 @@
 
 A comprehensive React component library with Tailwind CSS styling.
 
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Components](#components)
+   - [Button](#button)
+   - [Card](#card)
+   - [CardList](#cardlist)
+   - [ChatWindow](#chatwindow)
+   - [MessageBubble](#messagebubble)
+   - [ConversationList](#conversationlist)
+   - [InputBar](#inputbar)
+   - [Hero](#hero)
+   - [Navbar](#navbar)
+   - [NavLink](#navlink)
+   - [UserAvatar](#useravatar)
+   - [Footer](#footer)
+3. [Customization](#customization)
+4. [Usage with Tailwind CSS](#usage-with-tailwind-css)
+5. [Contributing](#contributing)
+6. [License](#license)
+
 ## Installation
 
 To install this library, run one of the following commands:
 
-```tsx
+```bash
 npm install https://github.com/alueddeke/my-frontend-lib.git
 # or
 yarn add https://github.com/alueddeke/my-frontend-lib.git
@@ -16,19 +37,34 @@ yarn add https://github.com/alueddeke/my-frontend-lib.git
 
 ### Button
 
-A customizable button component.
+A customizable button component.  
+ Props:
 
-```tsx
-<Button variant="secondary" size="lg" onClick={() => console.log("Clicked")}>
+- `variant`: 'primary' | 'secondary' | 'outline' (default: 'primary')
+- `size`: 'sm' | 'md' | 'lg' | string (default: 'md')
+- `onClick`: () => void
+- `children`: ReactNode
+- `className`: string (optional)
+
+```jsx
+<Button variant="secondary" size="lg" onClick={() => console.log("Clicked")>
   Click Me
 </Button>
 ```
 
 ### Card
 
-Displays content in a structured format, optionally including an image.
+Displays content in a structured format, optionally including an image.  
+ Props:
 
-```tsx
+- `title`: string
+- `description`: string
+- `imageSrc`: string (optional)
+- `size`: 'sm' | 'md' | 'lg' | string (default: 'md')
+- `imageSize`: string (default: 'h-48')
+- `className`: string (optional)
+
+```jsx
 <Card
   title="Card Title"
   description="This is a description of the card."
@@ -40,9 +76,13 @@ Displays content in a structured format, optionally including an image.
 
 ### CardList
 
-Provides a grid layout for multiple Card components.
+Provides a grid layout for multiple Card components.  
+ Props:
 
-```tsx
+- `children`: ReactNode (Card components)
+- `className`: string (optional)
+
+```jsx
 <CardList>
   <Card title="Card 1" description="Description 1" />
   <Card title="Card 2" description="Description 2" />
@@ -52,17 +92,39 @@ Provides a grid layout for multiple Card components.
 
 ### ChatWindow
 
-A container for chat messages and input.
+A container for chat messages and input.  
+ Props:
 
-```tsx
+- `children`: ReactNode
+- `className`: string (optional)
+
+```jsx
 <ChatWindow>{/* Chat messages and input go here */}</ChatWindow>
+```
+
+### MessageBubble
+
+Displays individual chat messages.  
+ Props:
+
+- `message`: string
+- `isUser`: boolean
+- `className`: string (optional)
+
+```jsx
+<MessageBubble message="Hello, how are you?" isUser={false} />
 ```
 
 ### ConversationList
 
-Displays a list of conversations or chat threads.
+Displays a list of conversations or chat threads.  
+ Props:
 
-```tsx
+- `conversations`: Array<{ id: string, name: string, lastMessage: string }>
+- `onSelectConversation`: (id: string) => void
+- `className`: string (optional)
+
+```jsx
 <ConversationList
   conversations={[
     { id: "1", name: "John Doe", lastMessage: "Hello!" },
@@ -72,26 +134,33 @@ Displays a list of conversations or chat threads.
 />
 ```
 
-### Footer
+### InputBar
 
-A customizable footer component.
+An input component for chat or search functionality.  
+ Props:
 
-```tsx
-<Footer
-  links={[
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-  ]}
-  height="lg"
-  backgroundColor="secondary"
-/>
+- `onSendMessage`: (message: string) => void
+- `placeholder`: string (optional)
+- `className`: string (optional)
+
+```jsx
+<InputBar onSendMessage={(message) => console.log(`Sending: ${message}`)} />
 ```
 
 ### Hero
 
-Creates a prominent banner area, often used at the top of a page.
+Creates a prominent banner area, often used at the top of a page.  
+ Props:
 
-```tsx
+- `title`: string
+- `subtitle`: string (optional)
+- `imageSrc`: string
+- `height`: 'sm' | 'md' | 'lg' | 'full' | string (default: 'md')
+- `overlay`: boolean (default: true)
+- `children`: ReactNode (optional)
+- `className`: string (optional)
+
+```jsx
 <Hero
   title="Welcome to Our Site"
   subtitle="Discover amazing things"
@@ -102,27 +171,17 @@ Creates a prominent banner area, often used at the top of a page.
 </Hero>
 ```
 
-### InputBar
-
-An input component for chat or search functionality.
-
-```tsx
-<InputBar onSendMessage={(message) => console.log(`Sending: ${message}`)} />
-```
-
-### MessageBubble
-
-Displays individual chat messages.
-
-```tsx
-<MessageBubble message="Hello, how are you?" isUser={false} />
-```
-
 ### Navbar
 
-A responsive navigation bar for your application.
+A responsive navigation bar for your application.  
+ Props:
 
-```tsx
+- `navItems`: Array<{ label: string, href: string }>
+- `onLogin`: () => void (optional)
+- `onSignup`: () => void (optional)
+- `className`: string (optional)
+
+```jsx
 <Navbar
   navItems={[
     { label: "Home", href: "/" },
@@ -135,18 +194,50 @@ A responsive navigation bar for your application.
 
 ### NavLink
 
-A styled navigation link, typically used within the Navbar.
+A styled navigation link, typically used within the Navbar.  
+ Props:
 
-```tsx
+- `href`: string
+- `children`: ReactNode
+- `className`: string (optional)
+
+```jsx
 <NavLink href="/about">About Us</NavLink>
 ```
 
 ### UserAvatar
 
-Displays a user's avatar image.
+Displays a user's avatar image.  
+ Props:
 
-```tsx
-<UserAvatar src="https://example.com/avatar.jpg" alt="User Name" />
+- `src`: string
+- `alt`: string
+- `size`: 'sm' | 'md' | 'lg' | string (default: 'md')
+- `className`: string (optional)
+
+```jsx
+<UserAvatar src="https://example.com/avatar.jpg" alt="User Name" size="lg" />
+```
+
+### Footer
+
+A customizable footer component.  
+ Props:
+
+- `links`: Array<{ label: string, href: string }>
+- `height`: 'sm' | 'md' | 'lg' | string (default: 'md')
+- `backgroundColor`: 'primary' | 'secondary' | 'background' | string (default: 'primary')
+- `className`: string (optional)
+
+```jsx
+<Footer
+  links={[
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+  ]}
+  height="lg"
+  backgroundColor="secondary"
+/>
 ```
 
 ## Customization
@@ -164,7 +255,7 @@ To use this library with Tailwind CSS in your project:
 1. Install Tailwind CSS in your project if you haven't already.
 2. Extend your `tailwind.config.js`:
 
-```ts
+```javascript
 module.exports = {
   presets: [require("my-frontend-lib/tailwind.config.js")],
   // Your project-specific configurations...
@@ -173,6 +264,6 @@ module.exports = {
 
 3. Import the library's CSS file in your main CSS file:
 
-```tsx
-@import 'my-frontend-lib/dist/styles.css';
+```css
+@import "my-frontend-lib/dist/styles.css";
 ```
