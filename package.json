@@ -17,7 +17,9 @@
     "url": "https://github.com/your-username/my-frontend-lib.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/themes.ts",
+    "src/index.ts"
   ],
   "scripts": {
     "dev": "vite",
