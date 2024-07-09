@@ -1,4 +1,6 @@
-module.exports = {
+// src/themes.ts
+
+const theme = {
   colors: {
     primary: {
       light: "#60A5FA", // light blue
@@ -36,3 +38,5 @@ module.exports = {
     xl: "2rem",
   },
 };
+
+export default theme;

@@ -8,6 +8,7 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "MyFrontendLib",
+      formats: ["es", "umd"],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
@@ -19,5 +20,6 @@ export default defineConfig({
         },
       },
     },
+    cssCodeSplit: false,
   },
 });

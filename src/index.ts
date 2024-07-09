@@ -10,3 +10,7 @@ export { default as MessageBubble } from "./components/MessageBubble";
 export { default as Navbar } from "./components/Navbar";
 export { default as NavLink } from "./components/NavLink";
 export { default as UserAvatar } from "./components/UserAvatar";
+
+export { default as theme } from "./themes";
+
+import "./index.css";
