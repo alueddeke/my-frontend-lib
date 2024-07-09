@@ -8,6 +8,7 @@ export { default as Hero } from "./components/Hero";
 export { default as InputBar } from "./components/InputBar";
 export { default as MessageBubble } from "./components/MessageBubble";
 export { default as Navbar } from "./components/Navbar";
+export { default as NavLink } from "./components/Navbar";
 
 export { default as UserAvatar } from "./components/UserAvatar";
 
