@@ -12,6 +12,7 @@ A comprehensive React component library with Tailwind CSS styling.
    - [ChatWindow](#chatwindow)
    - [MessageBubble](#messagebubble)
    - [ConversationList](#conversationlist)
+   - [SignUpForm](#signupform)
    - [InputBar](#inputbar)
    - [Hero](#hero)
    - [Navbar](#navbar)
@@ -134,23 +135,134 @@ Displays a list of conversations or chat threads.
 />
 ```
 
-### InputBar
+### SignUpForm
 
-An input component for chat or search functionality.  
- Props:
+A customizable sign-up form component that allows for flexible field configuration.
 
-- `onSendMessage`: (message: string) => void
-- `placeholder`: string (optional)
-- `className`: string (optional)
+#### Props
+
+| Prop             | Type                                       | Default   | Description                                         |
+| ---------------- | ------------------------------------------ | --------- | --------------------------------------------------- |
+| onSubmit         | (formData: Record<string, string>) => void | -         | Function called with form data when submitted       |
+| submitButtonText | string                                     | "Sign Up" | Text for the submit button                          |
+| className        | string                                     | ""        | Additional classes for the form element             |
+| children         | React.ReactNode                            | -         | Form fields (TextField or TextAreaField components) |
+
+#### Usage
 
 ```jsx
-<InputBar onSendMessage={(message) => console.log(`Sending: ${message}`)} />
+<SignUpForm
+  onSubmit={handleSignUp}
+  submitButtonText="Join Now"
+  className="max-w-md mx-auto"
+>
+  <TextField
+    name="username"
+    label="Username"
+    required
+    inputClassName="p-2 border rounded"
+  />
+  <TextField
+    name="email"
+    label="Email"
+    type="email"
+    required
+    inputClassName="p-2 border rounded"
+  />
+  <TextAreaField
+    name="bio"
+    label="Bio"
+    inputClassName="p-2 border rounded"
+    inputStyle={{ minHeight: "100px" }}
+  />
+</SignUpForm>
+```
+
+#### TextField
+
+A component for rendering text input fields within the SignUpForm.
+
+##### Props
+
+| Prop           | Type                | Default | Description                                          |
+| -------------- | ------------------- | ------- | ---------------------------------------------------- |
+| name           | string              | -       | Name attribute for the input                         |
+| label          | string              | -       | Label text for the input                             |
+| required       | boolean             | false   | Whether the field is required                        |
+| className      | string              | ""      | Additional classes for the field container           |
+| inputClassName | string              | ""      | Additional classes for the input element             |
+| inputStyle     | React.CSSProperties | {}      | Inline styles for the input element                  |
+| [key: string]  | any                 | -       | Any additional props are passed to the input element |
+
+#### TextAreaField
+
+A component for rendering textarea fields within the SignUpForm.
+
+##### Props
+
+| Prop           | Type                | Default | Description                                             |
+| -------------- | ------------------- | ------- | ------------------------------------------------------- |
+| name           | string              | -       | Name attribute for the textarea                         |
+| label          | string              | -       | Label text for the textarea                             |
+| required       | boolean             | false   | Whether the field is required                           |
+| className      | string              | ""      | Additional classes for the field container              |
+| inputClassName | string              | ""      | Additional classes for the textarea element             |
+| inputStyle     | React.CSSProperties | {}      | Inline styles for the textarea element                  |
+| [key: string]  | any                 | -       | Any additional props are passed to the textarea element |
+
+##### Customization
+
+Both TextField and TextAreaField components are a part of SignUpForm and allow for extensive customization:
+
+- Use `className` to style the container div (includes label and input)
+- Use `inputClassName` to add classes specifically to the input/textarea element
+- Use `inputStyle` to add inline styles to the input/textarea element
+
+Example of a custom styled field:
+
+```jsx
+<TextField
+  name="custom"
+  label="Custom Field"
+  className="mb-4"
+  inputClassName="p-3 bg-gray-100 rounded-lg"
+  inputStyle={{ border: "2px solid #4a5568" }}
+  placeholder="Enter custom data"
+/>
+```
+
+### InputBar
+
+A flexible input component that can be used for various purposes such as search bars or form inputs.
+
+#### Props
+
+| Prop            | Type                    | Default         | Description                                 |
+| --------------- | ----------------------- | --------------- | ------------------------------------------- |
+| onSubmit        | (value: string) => void | -               | Function called when the input is submitted |
+| placeholder     | string                  | "Enter text..." | Placeholder text for the input              |
+| initialValue    | string                  | ""              | Initial value of the input                  |
+| className       | string                  | ""              | Additional classes for the container div    |
+| inputClassName  | string                  | ""              | Additional classes for the input element    |
+| buttonClassName | string                  | ""              | Additional classes for the submit button    |
+| inputStyle      | React.CSSProperties     | {}              | Inline styles for the input element         |
+
+#### Usage
+
+```jsx
+<InputBar
+  onSubmit={(value) => console.log(value)}
+  placeholder="Search..."
+  inputClassName="p-2 border rounded"
+  buttonClassName="bg-blue-500 text-white p-2 rounded"
+  inputStyle={{ fontSize: "16px" }}
+/>
 ```
 
 ### Hero
 
-Creates a prominent banner area, often used at the top of a page.  
- Props:
+Creates a prominent banner area, often used at the top of a page.
+Props:
 
 - `title`: string
 - `subtitle`: string (optional)

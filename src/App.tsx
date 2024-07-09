@@ -6,6 +6,7 @@ import CardList from "./components/CardList";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Button from "./components/Button";
+import { SignUpForm, TextAreaField, TextField } from "./components/SignUpForm";
 
 const App: React.FC = () => {
   const navItems = [
@@ -20,6 +21,11 @@ const App: React.FC = () => {
     { label: "Terms of Service", href: "/terms" },
     { label: "Contact Us", href: "/contact" },
   ];
+
+  const handleSignUp = (formData: Record<string, string>) => {
+    console.log("Sign up data:", formData);
+    // Here you would typically send the data to your backend
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-background-light">
@@ -63,6 +69,44 @@ const App: React.FC = () => {
               size="md"
             />
           </CardList>
+
+          {/* New SignUpForm section */}
+          <section className="mt-lg">
+            <h2 className="text-3xl font-bold mb-md text-center">
+              Sign Up for Updates
+            </h2>
+            <div className="max-w-md mx-auto">
+              <SignUpForm
+                onSubmit={handleSignUp}
+                submitButtonText="Join Our Community"
+              >
+                <TextField
+                  name="name"
+                  label="Full Name"
+                  required
+                  placeholder="John Doe"
+                  inputClassName="p-2"
+                  inputStyle={{ backgroundColor: "#f0f0f0" }}
+                />
+                <TextField
+                  name="email"
+                  label="Email Address"
+                  type="email"
+                  required
+                  placeholder="john@example.com"
+                  inputClassName="p-3"
+                />
+                <TextAreaField
+                  name="interests"
+                  label="Travel Interests"
+                  placeholder="Tell us about your travel preferences"
+                  className="mt-4"
+                  inputClassName="p-4"
+                  inputStyle={{ minHeight: "200px" }}
+                />
+              </SignUpForm>
+            </div>
+          </section>
         </div>
       </main>
       <Footer links={footerLinks} height="md" backgroundColor="primary" />

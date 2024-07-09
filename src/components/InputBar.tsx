@@ -1,35 +1,49 @@
-// src/components/InputBar.tsx
 import React, { useState } from "react";
 
 interface InputBarProps {
-  onSendMessage: (message: string) => void;
+  onSubmit: (value: string) => void;
+  placeholder?: string;
+  buttonText?: string;
+  initialValue?: string;
+  className?: string;
+  inputClassName?: string;
+  buttonClassName?: string;
+  inputStyle?: React.CSSProperties;
 }
 
-const InputBar: React.FC<InputBarProps> = ({ onSendMessage }) => {
-  const [message, setMessage] = useState("");
+const InputBar: React.FC<InputBarProps> = ({
+  onSubmit,
+  placeholder = "Enter text...",
+  buttonText = "Submit",
+  initialValue = "",
+  className = "",
+  inputClassName = "",
+  buttonClassName = "",
+}) => {
+  const [value, setValue] = useState(initialValue);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (message.trim()) {
-      onSendMessage(message);
-      setMessage("");
+    if (value.trim()) {
+      onSubmit(value);
+      setValue("");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex p-md bg-white border-t">
+    <form onSubmit={handleSubmit} className={`flex ${className}`}>
       <input
         type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="flex-1 px-sm py-xs border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary"
-        placeholder="Type a message..."
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className={`flex-1 px-sm py-xs border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary ${inputClassName}`}
+        placeholder={placeholder}
       />
       <button
         type="submit"
-        className="px-md py-xs bg-primary text-white rounded-r-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary"
+        className={`px-md py-xs bg-primary text-white rounded-r-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary ${buttonClassName}`}
       >
-        Send
+        {buttonText}
       </button>
     </form>
   );
