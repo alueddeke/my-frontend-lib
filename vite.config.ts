@@ -8,8 +8,8 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "MyFrontendLib",
-      formats: ["es", "umd"],
-      fileName: (format) => `index.${format}.js`,
+      formats: ["es", "cjs"],
+      fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -20,6 +20,5 @@ export default defineConfig({
         },
       },
     },
-    cssCodeSplit: false,
   },
 });

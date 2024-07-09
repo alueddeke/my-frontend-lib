@@ -43,22 +43,44 @@ All components use Tailwind CSS classes for styling. You can further customize t
 To use this library with Tailwind CSS in your project:
 
 1. Install Tailwind CSS in your project if you haven't already.
-2. Extend your `tailwind.config.js`:
 
-```javascript
-module.exports = {
-  presets: [require("my-frontend-lib/tailwind.config.js")],
-  // Your project-specific configurations...
-};
+```bash
+ npm install tailwindcss postcss autoprefixer
+  npx tailwindcss init -p
 ```
 
-3. Import the library's CSS file in your main CSS file:
+2. Configure your `tailwind.config.js` to include your library's content:
+
+   ```javascript
+   import { themes.ts } from "my-frontend-lib";
+
+   export default {
+     content: [
+       "./src/**/*.{js,jsx,ts,tsx}",
+       "./node_modules/your-library-name/**/*.js",
+     ],
+     theme: {
+        extend: {
+        colors: theme.colors,
+        fontSize: theme.fontSizes,
+        fontFamily: theme.fontFamily,
+        spacing: theme.spacing,
+    },
+     },
+     plugins: [],
+   };
+   ```
+
+3. Import the library's CSS file, along with Tailwind directives in your main CSS file:
 
 ```css
 @import "my-frontend-lib/dist/styles.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
-5. Import and use components in your React components:
+4. Import and use components in your React components:
 
    ```jsx
    import React from "react";
