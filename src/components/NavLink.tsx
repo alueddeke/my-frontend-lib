@@ -1,16 +1,33 @@
-import React from "react";
+// src/components/NavLink.tsx
+import React, { ReactNode } from "react";
 
 interface NavLinkProps {
   href: string;
-  children: React.ReactNode;
+  children: ReactNode;
+  className?: string;
+  activeClassName?: string;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
+const NavLink: React.FC<NavLinkProps> = ({
+  href,
+  children,
+  className = "",
+  activeClassName = "",
+  isActive = false,
+  onClick,
+}) => {
+  const baseClasses = "px-3 py-2 rounded-md text-sm font-medium";
+  const defaultClasses = "text-gray-300 hover:bg-gray-700 hover:text-white";
+  const activeClasses = "bg-gray-900 text-white";
+
+  const computedClasses = `${baseClasses} ${
+    isActive ? activeClasses : defaultClasses
+  } ${className} ${isActive ? activeClassName : ""}`.trim();
+
   return (
-    <a
-      href={href}
-      className="text-gray-700 hover:text-primary transition-colors px-sm py-xs rounded"
-    >
+    <a href={href} className={computedClasses} onClick={onClick}>
       {children}
     </a>
   );

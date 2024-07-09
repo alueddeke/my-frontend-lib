@@ -19,10 +19,6 @@ A comprehensive React component library with Tailwind CSS styling.
    - [NavLink](#navlink)
    - [UserAvatar](#useravatar)
    - [Footer](#footer)
-3. [Customization](#customization)
-4. [Usage with Tailwind CSS](#usage-with-tailwind-css)
-5. [Contributing](#contributing)
-6. [License](#license)
 
 ## Installation
 
@@ -33,6 +29,70 @@ npm install https://github.com/alueddeke/my-frontend-lib.git
 # or
 yarn add https://github.com/alueddeke/my-frontend-lib.git
 ```
+
+## Customization
+
+All components use Tailwind CSS classes for styling. You can further customize the appearance by:
+
+1. Modifying the `tailwind.config.js` file to adjust the theme.
+2. Passing custom classes via the `className` prop (where available).
+3. Extending the components and adding your own styles.
+
+## Usage with Tailwind CSS
+
+To use this library with Tailwind CSS in your project:
+
+1. Install Tailwind CSS in your project if you haven't already.
+2. Extend your `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  presets: [require("my-frontend-lib/tailwind.config.js")],
+  // Your project-specific configurations...
+};
+```
+
+3. Import the library's CSS file in your main CSS file:
+
+```css
+@import "my-frontend-lib/dist/styles.css";
+```
+
+5. Import and use components in your React components:
+
+   ```jsx
+   import React from "react";
+   import { Navbar, NavLink, Button } from "my-frontend-lib";
+
+   function App() {
+     return (
+       <div>
+         <Navbar className="bg-blue-500 text-white">
+           <div className="flex-shrink-0">
+             <span className="text-xl font-bold">My App</span>
+           </div>
+           <div className="flex space-x-4">
+             <NavLink href="/" className="text-white hover:text-blue-200">
+               Home
+             </NavLink>
+             <NavLink href="/about" className="text-white hover:text-blue-200">
+               About
+             </NavLink>
+           </div>
+           <div className="flex items-center space-x-2">
+             <Button onClick={() => console.log("Login clicked")}>Login</Button>
+             <Button onClick={() => console.log("Sign up clicked")}>
+               Sign Up
+             </Button>
+           </div>
+         </Navbar>
+         {/* Rest of your app */}
+       </div>
+     );
+   }
+
+   export default App;
+   ```
 
 ## Components
 
@@ -285,36 +345,52 @@ Props:
 
 ### Navbar
 
-A responsive navigation bar for your application.  
- Props:
+A flexible container for creating navigation bars.
 
-- `navItems`: Array<{ label: string, href: string }>
-- `onLogin`: () => void (optional)
-- `onSignup`: () => void (optional)
-- `className`: string (optional)
+Props:
+
+- `children`: ReactNode - The content of the navbar
+- `className`: string (optional) - Additional CSS classes
+
+Usage:
 
 ```jsx
-<Navbar
-  navItems={[
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-  ]}
-  onLogin={() => console.log("Login clicked")}
-  onSignup={() => console.log("Signup clicked")}
-/>
+<Navbar className="bg-blue-500 text-white">
+  <div className="flex-shrink-0">
+    <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
+    <span className="ml-2 text-xl font-bold">My Company</span>
+  </div>
+  <div className="flex space-x-4">
+    <NavLink href="/" className="text-white hover:text-blue-200">
+      Home
+    </NavLink>
+    <NavLink href="/about" className="text-white hover:text-blue-200">
+      About
+    </NavLink>
+  </div>
+  <div className="flex items-center space-x-2">
+    <Button onClick={() => console.log("Login clicked")}>Login</Button>
+    <Button onClick={() => console.log("Sign up clicked")}>Sign Up</Button>
+  </div>
+</Navbar>
 ```
 
 ### NavLink
 
-A styled navigation link, typically used within the Navbar.  
- Props:
+A component for rendering navigation links.
 
-- `href`: string
-- `children`: ReactNode
-- `className`: string (optional)
+Props:
+
+- `href`: string - The URL the link points to
+- `children`: ReactNode - The content of the link
+- `className`: string (optional) - Additional CSS classes
+
+Usage:
 
 ```jsx
-<NavLink href="/about">About Us</NavLink>
+<NavLink href="/about" className="text-white hover:text-blue-200">
+  About
+</NavLink>
 ```
 
 ### UserAvatar
@@ -350,32 +426,4 @@ A customizable footer component.
   height="lg"
   backgroundColor="secondary"
 />
-```
-
-## Customization
-
-All components use Tailwind CSS classes for styling. You can further customize the appearance by:
-
-1. Modifying the `tailwind.config.js` file to adjust the theme.
-2. Passing custom classes via the `className` prop (where available).
-3. Extending the components and adding your own styles.
-
-## Usage with Tailwind CSS
-
-To use this library with Tailwind CSS in your project:
-
-1. Install Tailwind CSS in your project if you haven't already.
-2. Extend your `tailwind.config.js`:
-
-```javascript
-module.exports = {
-  presets: [require("my-frontend-lib/tailwind.config.js")],
-  // Your project-specific configurations...
-};
-```
-
-3. Import the library's CSS file in your main CSS file:
-
-```css
-@import "my-frontend-lib/dist/styles.css";
 ```
