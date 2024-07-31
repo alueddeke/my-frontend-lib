@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/my-frontend-lib.git"
+    "url": "https://github.com/alueddeke/my-frontend-lib.git"
   },
   "files": [
     "dist",
