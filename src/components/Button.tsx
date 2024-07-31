@@ -3,6 +3,7 @@ import React, { ButtonHTMLAttributes } from "react";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg" | string;
+  textColor?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -10,15 +11,15 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   size = "md",
   className = "",
+  textColor,
   ...props
 }) => {
   const baseClasses = "font-sans rounded transition-colors";
 
   const variantClasses = {
-    primary: "bg-primary hover:bg-primary-dark text-white",
-    secondary: "bg-secondary hover:bg-secondary-dark text-white",
-    outline:
-      "bg-transparent border border-primary text-primary hover:bg-primary hover:text-white",
+    primary: "bg-primary hover:bg-primary-dark",
+    secondary: "bg-secondary hover:bg-secondary-dark",
+    outline: "bg-transparent border border-primary hover:bg-primary",
   };
 
   const sizeClasses = {
@@ -30,7 +31,15 @@ const Button: React.FC<ButtonProps> = ({
   // Use predefined sizes if available, otherwise use custom size
   const sizeClass = sizeClasses[size as keyof typeof sizeClasses] || size;
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClass} ${className}`;
+  // Combine classes, giving precedence to custom className and textColor
+  const classes = [
+    baseClasses,
+    variantClasses[variant],
+    sizeClass,
+    textColor ||
+      (variant !== "outline" ? "text-white" : "text-primary hover:text-white"),
+    className,
+  ].join(" ");
 
   return (
     <button className={classes} {...props}>
