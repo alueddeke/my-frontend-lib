@@ -25,9 +25,9 @@ A comprehensive React component library with Tailwind CSS styling.
 To install this library, run one of the following commands:
 
 ```bash
-npm install https://github.com/alueddeke/my-frontend-lib.git
+npm install github:alueddeke/my-frontend-lib#v1.0.1
 # or
-yarn add https://github.com/alueddeke/my-frontend-lib.git
+yarn add github:alueddeke/my-frontend-lib#v1.0.1
 ```
 
 ## Customization
@@ -121,16 +121,22 @@ To use this library with Tailwind CSS in your project:
 ### Button
 
 A customizable button component.  
- Props:
+Props:
 
 - `variant`: 'primary' | 'secondary' | 'outline' (default: 'primary')
 - `size`: 'sm' | 'md' | 'lg' | string (default: 'md')
 - `onClick`: () => void
 - `children`: ReactNode
 - `className`: string (optional)
+- `textColor`: string (optional) - Text color class (e.g., "text-black")
 
 ```jsx
-<Button variant="secondary" size="lg" onClick={() => console.log("Clicked")>
+<Button
+  variant="secondary"
+  size="lg"
+  onClick={() => console.log("Clicked")}
+  textColor="text-black"
+>
   Click Me
 </Button>
 ```
@@ -373,11 +379,12 @@ Props:
 
 - `children`: ReactNode - The content of the navbar
 - `className`: string (optional) - Additional CSS classes
+- `bgColor`: string (optional) - Background color class (e.g., "bg-blue-500")
 
 Usage:
 
 ```jsx
-<Navbar className="bg-blue-500 text-white">
+<Navbar className="text-white" bgColor="bg-blue-500">
   <div className="flex-shrink-0">
     <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
     <span className="ml-2 text-xl font-bold">My Company</span>
