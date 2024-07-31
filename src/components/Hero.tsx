@@ -7,6 +7,7 @@ interface HeroProps {
   height?: "sm" | "md" | "lg" | "full" | string;
   overlay?: boolean;
   children?: React.ReactNode;
+  className?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -16,6 +17,7 @@ const Hero: React.FC<HeroProps> = ({
   height = "md",
   overlay = true,
   children,
+  className = "",
 }) => {
   const heightClasses = {
     sm: "h-64",
@@ -27,9 +29,12 @@ const Hero: React.FC<HeroProps> = ({
   const heightClass =
     heightClasses[height as keyof typeof heightClasses] || height;
 
+  const baseClasses = "relative flex items-center justify-center";
+  const bgClasses = imageSrc ? "" : "bg-gray-800 text-white";
+
   return (
     <div
-      className={`relative flex items-center justify-center ${heightClass} bg-gray-800 text-white`}
+      className={`${baseClasses} ${heightClass} ${bgClasses} ${className}`}
       style={
         imageSrc
           ? {
