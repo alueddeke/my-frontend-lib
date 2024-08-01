@@ -120,15 +120,22 @@ To use this library with Tailwind CSS in your project:
 
 ### Button
 
-A customizable button component.  
-Props:
+A highly customizable button component that supports both predefined styles and custom Tailwind classes.
+
+#### Props:
 
 - `variant`: 'primary' | 'secondary' | 'outline' (default: 'primary')
 - `size`: 'sm' | 'md' | 'lg' | string (default: 'md')
 - `onClick`: () => void
 - `children`: ReactNode
-- `className`: string (optional)
+- `className`: string (optional) - Custom Tailwind classes
 - `textColor`: string (optional) - Text color class (e.g., "text-black")
+
+The `className` prop can be used to override or extend the default styles with custom Tailwind classes.
+
+#### Usage Examples:
+
+Using predefined props:
 
 ```jsx
 <Button
