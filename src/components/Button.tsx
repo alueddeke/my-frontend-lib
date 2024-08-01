@@ -31,18 +31,24 @@ const Button: React.FC<ButtonProps> = ({
   // Use predefined sizes if available, otherwise use custom size
   const sizeClass = sizeClasses[size as keyof typeof sizeClasses] || size;
 
-  // Combine classes, giving precedence to custom className and textColor
+  // Combine classes, giving precedence to custom className
   const classes = [
     baseClasses,
     variantClasses[variant],
     sizeClass,
     textColor ||
       (variant !== "outline" ? "text-white" : "text-primary hover:text-white"),
-    className,
+  ]
+    .join(" ")
+    .split(" ");
+
+  // Merge with className, allowing Tailwind classes to override defaults
+  const mergedClasses = [
+    ...new Set([...classes, ...className.split(" ")]),
   ].join(" ");
 
   return (
-    <button className={classes} {...props}>
+    <button className={mergedClasses} {...props}>
       {children}
     </button>
   );
