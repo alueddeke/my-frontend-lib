@@ -20,6 +20,7 @@ A comprehensive React component library with Tailwind CSS styling.
    - [NavLink](#navlink)
    - [UserAvatar](#useravatar)
    - [Footer](#footer)
+   - [ComponentCarousel](#componentcarousel)
 
 ## Quick Setup
 
@@ -133,6 +134,27 @@ To use this library with Tailwind CSS in your project:
 
    export default App;
    ```
+
+### Component Carousel
+
+You have the ability to add a new section for a ComponentCarousel to display the components that showcases all available components in the library with examples and descriptions.
+
+#### Usage
+
+The ComponentCarousel is automatically generated using the `generate-carousel` script. To use it in your project:
+
+```jsx
+import { ComponentCarousel } from "my-frontend-lib";
+
+function App() {
+  return (
+    <div>
+      <h1>Component Showcase</h1>
+      <ComponentCarousel />
+    </div>
+  );
+}
+```
 
 ## Components
 
