@@ -1,6 +1,11 @@
 // src/components/ChatWindow.tsx
 import React, { ReactNode } from "react";
 
+/**
+ * ChatWindow Component
+ * Use case: Provides a scrollable container for chat messages and input, typically used in messaging interfaces
+ */
+
 interface ChatWindowProps {
   children: ReactNode;
 }

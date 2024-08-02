@@ -1,6 +1,11 @@
 // src/components/Navbar.tsx
 import React, { ReactNode } from "react";
 
+/**
+ * Navbar Component
+ * Use case: Creates a flexible navigation bar container for website headers, allowing for custom content and styling
+ */
+
 interface NavbarProps {
   children: ReactNode;
   className?: string;

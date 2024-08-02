@@ -1,6 +1,11 @@
 // src/components/NavLink.tsx
 import React, { ReactNode } from "react";
 
+/**
+ * NavLink Component
+ * Use case: Creates a customizable navigation link for use in navigation menus, with support for active state styling
+ */
+
 interface NavLinkProps {
   href: string;
   children: ReactNode;

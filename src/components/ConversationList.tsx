@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * ConversationList Component
+ * Use case: Displays a list of conversations or chat threads, allowing users to select and switch between different conversations
+ */
+
 interface Conversation {
   id: string;
   name: string;

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+/**
+ * InputBar Component
+ * Use case: Provides a flexible input field with a submit button, commonly used for search bars, chat inputs, or form submissions
+ */
 
 interface InputBarProps {
   onSubmit: (value: string) => void;

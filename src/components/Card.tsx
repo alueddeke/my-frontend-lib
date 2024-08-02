@@ -1,12 +1,18 @@
 // src/components/Card.tsx
 import React from "react";
 
+/**
+ * Card Component
+ * Use case: Displays content in a structured format, optionally including an image
+ */
+
 interface CardProps {
   title: string;
   description: string;
   imageSrc?: string;
   size?: "sm" | "md" | "lg" | string;
   imageSize?: string;
+  className?: string; // Add this line
 }
 
 const Card: React.FC<CardProps> = ({
@@ -15,6 +21,7 @@ const Card: React.FC<CardProps> = ({
   imageSrc,
   size = "md",
   imageSize = "h-48",
+  className = "", // Add this line
 }) => {
   const sizeClasses = {
     sm: "max-w-xs",
@@ -26,7 +33,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-md overflow-hidden ${sizeClass}`}
+      className={`bg-white rounded-lg shadow-md overflow-hidden ${sizeClass} ${className}`.trim()}
     >
       {imageSrc && (
         <img

@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * UserAvatar Component
+ * Use case: Displays a user's avatar image in a circular format, typically used in user interfaces for profile pictures or user representations
+ */
+
 interface UserAvatarProps {
   src: string;
   alt: string;

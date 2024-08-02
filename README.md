@@ -4,8 +4,9 @@ A comprehensive React component library with Tailwind CSS styling.
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Components](#components)
+1. [Quick Setup](#quicksetup)
+2. [Installation](#installation)
+3. [Components](#components)
    - [Button](#button)
    - [Card](#card)
    - [CardList](#cardlist)
@@ -19,6 +20,23 @@ A comprehensive React component library with Tailwind CSS styling.
    - [NavLink](#navlink)
    - [UserAvatar](#useravatar)
    - [Footer](#footer)
+
+## Quick Setup
+
+To quickly set up the project, install dependencies, build the project, and run the linter, use the following command:
+
+```bash
+npm install
+npm run build
+npm run generate-carousel
+
+```
+
+Alternatively, you can use our setup script which does all of this in one command:
+
+```bash
+npm run setup
+```
 
 ## Installation
 
@@ -172,17 +190,73 @@ Displays content in a structured format, optionally including an image.
 
 ### CardList
 
-Provides a grid layout for multiple Card components.  
- Props:
+A flexible container for displaying multiple Card components in various layouts.
 
-- `children`: ReactNode (Card components)
-- `className`: string (optional)
+#### Props:
+
+- `children`: React.ReactNode - Card components to be displayed
+- `className`: string (optional) - Additional CSS classes for the list container
+- `containerClassName`: string (optional) - Additional CSS classes for the outer container
+- `layout`: 'horizontal' | 'vertical' | 'grid' (default: 'horizontal')
+- `gap`: string (optional) - Tailwind CSS gap class (e.g., 'gap-4')
+- `columns`: { sm?: number; md?: number; lg?: number } (optional) - Column configuration for grid layout
+- `itemWidth`: string (optional) - Width class for items in horizontal layout (e.g., 'w-64')
+- `itemClassName`: string (optional) - Additional CSS classes for individual item containers
+
+#### Usage Examples:
+
+Horizontal layout:
 
 ```jsx
-<CardList>
-  <Card title="Card 1" description="Description 1" />
-  <Card title="Card 2" description="Description 2" />
-  <Card title="Card 3" description="Description 3" />
+<CardList
+  layout="horizontal"
+  gap="gap-8"
+  itemWidth="72"
+  className="pb-4"
+  containerClassName="overflow-hidden"
+>
+  <Card
+    title="Card 1"
+    description="Description 1"
+    imageSrc="/images/image1.jpg"
+  />
+  <Card
+    title="Card 2"
+    description="Description 2"
+    imageSrc="/images/image2.jpg"
+  />
+  <Card
+    title="Card 3"
+    description="Description 3"
+    imageSrc="/images/image3.jpg"
+  />
+</CardList>
+```
+
+Grid Layout:
+
+```jsx
+<CardList
+  layout="grid"
+  gap="gap-6"
+  columns={{ sm: 1, md: 2, lg: 3 }}
+  className="pb-4"
+>
+  <Card
+    title="Card 1"
+    description="Description 1"
+    imageSrc="/images/image1.jpg"
+  />
+  <Card
+    title="Card 2"
+    description="Description 2"
+    imageSrc="/images/image2.jpg"
+  />
+  <Card
+    title="Card 3"
+    description="Description 3"
+    imageSrc="/images/image3.jpg"
+  />
 </CardList>
 ```
 

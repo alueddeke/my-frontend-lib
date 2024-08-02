@@ -1,7 +1,17 @@
 // src/components/SignUpForm.tsx
 import React from "react";
-import Button from "./Button";
 import InputBar from "./InputBar";
+import Button, { ButtonProps } from "./Button";
+
+/**
+ * SignUpForm Component
+ * Use case: Creates a customizable sign-up form with various input fields and a submit button
+ */
+
+/**
+ * TextField Component
+ * Use case: Renders a single-line text input field with a label, for use within the SignUpForm
+ */
 
 interface FieldProps {
   name: string;
@@ -67,12 +77,14 @@ const TextAreaField: React.FC<FieldProps> = ({
     />
   </div>
 );
-
 interface SignUpFormProps {
   onSubmit: (formData: Record<string, string>) => void;
   submitButtonText?: string;
   className?: string;
   children: React.ReactNode;
+  buttonProps?: Partial<ButtonProps>;
+  buttonClassName?: string;
+  CustomButton?: React.ComponentType<ButtonProps>;
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({
@@ -80,6 +92,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   submitButtonText = "Sign Up",
   className = "",
   children,
+  buttonProps = {},
+  buttonClassName = "",
+  CustomButton,
 }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -91,10 +106,18 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     onSubmit(data);
   };
 
+  const ButtonComponent = CustomButton || Button;
+
   return (
     <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
       {children}
-      <Button type="submit">{submitButtonText}</Button>
+      <ButtonComponent
+        type="submit"
+        className={buttonClassName}
+        {...buttonProps}
+      >
+        {submitButtonText}
+      </ButtonComponent>
     </form>
   );
 };

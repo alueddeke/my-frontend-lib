@@ -1,5 +1,9 @@
 // src/components/MessageBubble.tsx
 import React from "react";
+/**
+ * MessageBubble Component
+ * Use case: Displays individual chat messages in a visually distinct bubble, differentiating between user and non-user messages
+ */
 
 interface MessageBubbleProps {
   message: string;

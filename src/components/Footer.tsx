@@ -9,41 +9,36 @@ interface FooterLink {
 interface FooterProps {
   links: FooterLink[];
   height?: "sm" | "md" | "lg" | string;
-  backgroundColor?: "primary" | "secondary" | "background" | string;
+  backgroundColor?: string;
+  className?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({
   links,
   height = "md",
-  backgroundColor = "primary",
+  backgroundColor = "bg-primary",
+  className = "",
 }) => {
   const heightClasses = {
-    sm: "py-sm",
-    md: "py-md",
-    lg: "py-lg",
-  };
-
-  const bgColorClasses = {
-    primary: "bg-primary",
-    secondary: "bg-secondary",
-    background: "bg-background",
+    sm: "py-2",
+    md: "py-4",
+    lg: "py-6",
   };
 
   const heightClass =
     heightClasses[height as keyof typeof heightClasses] || height;
-  const bgColorClass =
-    bgColorClasses[backgroundColor as keyof typeof bgColorClasses] ||
-    backgroundColor;
 
   return (
-    <footer className={`${bgColorClass} ${heightClass} text-white`}>
-      <div className="container mx-auto px-md">
+    <footer
+      className={`${backgroundColor} ${heightClass} ${className} text-white`}
+    >
+      <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
-          <div className="w-full md:w-auto mb-md md:mb-0">
+          <div className="w-full md:w-auto mb-4 md:mb-0">
             <p>&copy; 2024 Your Company Name. All rights reserved.</p>
           </div>
           <nav className="w-full md:w-auto">
-            <ul className="flex flex-wrap justify-center md:justify-end space-x-md">
+            <ul className="flex flex-wrap justify-center md:justify-end space-x-4">
               {links.map((link) => (
                 <li key={link.href}>
                   <NavLink href={link.href}>{link.label}</NavLink>

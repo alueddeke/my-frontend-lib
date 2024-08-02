@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Hero Component
+ * Use case: Creates a prominent banner or header section for web pages, often used at the top of landing pages or key sections
+ */
+
 interface HeroProps {
   title: string;
   subtitle?: string;
