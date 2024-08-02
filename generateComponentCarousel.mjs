@@ -35,18 +35,16 @@ import NavLink from './components/NavLink';
 import { SignUpForm, TextField, TextAreaField } from './components/SignUpForm';
 import UserAvatar from './components/UserAvatar';
 
-/**
- * @typedef {Object} ComponentInfo
- * @property {string} componentName
- * @property {string} fileName
- * @property {string} title
- * @property {string} useCase
- */
+interface ComponentInfo {
+  componentName: string;
+  fileName: string;
+  title: string;
+  useCase: string;
+}
 
-/** @type {ComponentInfo[]} */
-const components = ${JSON.stringify(components, null, 2)};
+const components: ComponentInfo[] = ${JSON.stringify(components, null, 2)};
 
-export const ComponentCarousel = () => {
+export const ComponentCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextComponent = () => {
@@ -59,7 +57,7 @@ export const ComponentCarousel = () => {
 
   const currentComponent = components[currentIndex];
 
-  const renderComponentExample = (componentName) => {
+  const renderComponentExample = (componentName: string) => {
     switch(componentName) {
       case 'Button':
         return <Button onClick={() => console.log('Button clicked')}>Example Button</Button>;
