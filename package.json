@@ -24,9 +24,10 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run generate-carousel && tsc && vite build",
+    "build:lib": "tsc && vite build --mode lib",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "npm run build",
+    "prepare": "npm run build:lib",
     "generate-carousel": "node generateComponentCarousel.mjs",
     "setup": "node setup.mjs"
   },
@@ -41,6 +42,7 @@
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
