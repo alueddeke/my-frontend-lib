@@ -13,16 +13,14 @@ import NavLink from "./components/NavLink";
 import { SignUpForm, TextField, TextAreaField } from "./components/SignUpForm";
 import UserAvatar from "./components/UserAvatar";
 
-/**
- * @typedef {Object} ComponentInfo
- * @property {string} componentName
- * @property {string} fileName
- * @property {string} title
- * @property {string} useCase
- */
+interface ComponentInfo {
+  componentName: string;
+  fileName: string;
+  title: string;
+  useCase: string;
+}
 
-/** @type {ComponentInfo[]} */
-const components = [
+const components: ComponentInfo[] = [
   {
     componentName: "Button",
     fileName: "Button.tsx",
@@ -61,7 +59,7 @@ const components = [
     componentName: "Footer",
     fileName: "Footer.tsx",
     title: "Footer",
-    useCase: "No use case provided",
+    useCase: "Provides a customizable footer for web pages",
   },
   {
     componentName: "Hero",
@@ -114,7 +112,7 @@ const components = [
   },
 ];
 
-export const ComponentCarousel = () => {
+export const ComponentCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextComponent = () => {
@@ -129,7 +127,7 @@ export const ComponentCarousel = () => {
 
   const currentComponent = components[currentIndex];
 
-  const renderComponentExample = (componentName) => {
+  const renderComponentExample = (componentName: string) => {
     switch (componentName) {
       case "Button":
         return (
